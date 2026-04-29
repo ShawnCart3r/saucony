@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saucony Days | Fleet Feet Vermont</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0D1B3E;
+      --navy-deep: #071020;
+      --navy-mid: #142348;
+      --navy-light: #1e3160;
+      --accent: #CC0000;
+      --accent-glow: rgba(204,0,0,0.15);
+      --accent-blue: #4A9EFF;
+      --white: #ffffff;
+      --muted: #7a9cc4;
+      --card-bg: #111f42;
+      --card-border: rgba(204,0,0,0.18);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: var(--navy-deep);
+      color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(204,0,0,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 90% 90%, rgba(13,27,62,0.8) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      padding: 20px 40px;
+      border-bottom: 1px solid rgba(204,0,0,0.2);
+      background: rgba(7,16,32,0.7);
+      backdrop-filter: blur(10px);
+    }
+    .header-logo {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 24px;
+    }
+    .header-logo + .header-logo {
+      border-left: 1px solid rgba(204,0,0,0.15);
+    }
+    .header-logo img {
+      height: 64px;
+      width: auto;
+      mix-blend-mode: lighten;
+      filter: brightness(1.05);
+    }
+    .logo-placeholder {
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px dashed rgba(204,0,0,0.35);
+      border-radius: 8px;
+      padding: 0 28px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(204,0,0,0.45);
+      white-space: nowrap;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 72px 24px 40px;
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(36px, 7vw, 72px);
+      font-weight: 900;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 4px;
+      line-height: 1.0;
+    }
+    .hero-eyebrow span { color: var(--accent); }
+    .hero h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(16px, 3vw, 28px);
+      font-weight: 400;
+      line-height: 1.4;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+
+
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 0 24px 10px;
+      margin-bottom: 4px;
+    }
+    .section-label .eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .section-label h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--white);
+    }
+
+    /* ── CATEGORY GRID ── */
+    .grid-section {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+    .brand-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    /* ── CATEGORY CARD ── */
+    .brand-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .brand-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 0 40px rgba(204,0,0,0.15), 0 20px 60px rgba(0,0,0,0.5);
+      border-color: rgba(204,0,0,0.45);
+    }
+    .brand-card:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+    .brand-img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      position: relative;
+      border-radius: 16px 16px 0 0;
+      overflow: hidden;
+    }
+    .brand-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 20px;
+      transition: transform 0.4s ease;
+    }
+    .brand-card:hover .brand-img img { transform: scale(1.05); }
+    .brand-info {
+      padding: 18px 20px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand-name-small {
+      font-size: clamp(14px, 3vw, 22px);
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-align: left;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 4px;
+      word-break: break-word;
+    }
+    .brand-tagline {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+    .brand-arrow {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--accent-glow);
+      border: 1px solid rgba(204,0,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 16px;
+      flex-shrink: 0;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+    }
+    .brand-card:hover .brand-arrow {
+      background: var(--accent);
+      color: var(--white);
+      transform: translateX(3px);
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto 60px;
+      padding: 0 24px;
+      border: none;
+      border-top: 3px solid var(--accent);
+    }
+
+    /* ── RACE VERMONT SECTION ── */
+    .race-section {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+    }
+    .race-feature {
+      background: var(--card-bg);
+      border: 1px solid rgba(204,0,0,0.2);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+    .race-feature-img-placeholder {
+      width: 100%;
+      background: rgba(204,0,0,0.05);
+      border-bottom: 1px solid rgba(204,0,0,0.15);
+      padding: 48px 24px;
+      text-align: center;
+      font-size: 13px;
+      color: rgba(122,156,196,0.4);
+      font-family: 'Barlow Condensed', sans-serif;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .race-feature-body {
+      padding: 28px 32px 32px;
+    }
+    .race-feature-eyebrow {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .race-feature-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(20px, 4vw, 30px);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .race-meta {
+      display: flex;
+      gap: 32px;
+      margin-bottom: 16px;
+    }
+    .race-meta-item {}
+    .race-meta-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .race-meta-value {
+      font-size: 14px;
+      color: var(--white);
+    }
+    .race-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .race-cta {
+      display: inline-block;
+      padding: 14px 40px;
+      background: var(--accent);
+      color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .race-cta:hover { background: #aa0000; transform: translateY(-2px); }
+
+    /* ── RACE CALENDAR LIST ── */
+    .race-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .race-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--card-bg);
+      border: 1px solid rgba(204,0,0,0.15);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 10px 10px 0;
+      padding: 16px 20px;
+      gap: 16px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .race-item:hover {
+      border-color: rgba(204,0,0,0.5);
+      background: rgba(204,0,0,0.06);
+    }
+    .race-item-date {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .race-item-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--white);
+      margin-bottom: 2px;
+    }
+    .race-item-location {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .race-item-link {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      white-space: nowrap;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    .race-item-link:hover { color: #ff3333; }
+
+    .calendar-cta-wrap {
+      text-align: center;
+      margin-top: 28px;
+    }
+    .calendar-cta {
+      display: inline-block;
+      padding: 13px 36px;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .calendar-cta:hover { background: var(--accent); color: var(--white); }
+
+    /* ── MODAL OVERLAY ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(5,12,28,0.9);
+      backdrop-filter: blur(10px);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.open {
+      display: flex;
+      animation: fadeIn 0.2s ease;
+    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    /* ── MODAL BOX ── */
+    .modal-box {
+      background: var(--navy-mid);
+      border: 1px solid rgba(204,0,0,0.25);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 900px;
+      max-height: 88vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      animation: slideUp 0.3s cubic-bezier(0.34,1.56,0.64,1);
+      position: relative;
+    }
+    @keyframes slideUp {
+      from { transform: translateY(24px); opacity: 0; }
+      to   { transform: translateY(0);    opacity: 1; }
+    }
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(255,255,255,0.08);
+      border: none;
+      color: var(--white);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      z-index: 10;
+    }
+    .modal-close:hover { background: rgba(255,255,255,0.18); }
+
+    .modal-header {
+      padding: 32px 36px 24px;
+      border-bottom: 1px solid rgba(204,0,0,0.15);
+    }
+    .modal-brand-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .modal-brand-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 36px;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .modal-brand-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 560px;
+    }
+
+    .styles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      padding: 28px 36px 36px;
+    }
+
+    /* ── FLIP CARD ── */
+    .style-card {
+      text-decoration: none;
+      cursor: pointer;
+      perspective: 1000px;
+      aspect-ratio: 3/4;
+    }
+    .flip-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.55s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+      border-radius: 14px;
+    }
+    .style-card:hover .flip-inner {
+      transform: rotateY(180deg);
+    }
+    .flip-front,
+    .flip-back {
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      overflow: hidden;
+    }
+    .flip-front {
+      background: #ffffff;
+    }
+    .flip-front img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 20px;
+    }
+    .flip-front-hint {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(204,0,0,0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      color: #fff;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    .style-card:hover .flip-front-hint { opacity: 1; }
+
+    .flip-back {
+      background: var(--card-bg);
+      border: 1px solid rgba(204,0,0,0.2);
+      transform: rotateY(180deg);
+      display: flex;
+      flex-direction: column;
+      padding: 16px;
+    }
+    .style-card-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 3px;
+    }
+    .style-card-sub {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+    .style-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(204,0,0,0.12);
+    }
+    .stat-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .stat-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .stat-value {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--white);
+      letter-spacing: 0.5px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 28px 24px;
+      border-top: 1px solid rgba(204,0,0,0.15);
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 1px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .brand-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+      .styles-grid { grid-template-columns: 1fr 1fr; padding: 20px; gap: 12px; }
+      .modal-header { padding: 28px 20px 20px; }
+      .modal-brand-title { font-size: 26px; }
+      .race-meta { flex-direction: column; gap: 14px; }
+      .race-item { flex-direction: column; align-items: flex-start; }
+      .promo-grid { grid-template-columns: 1fr; }
+      .promo-cell:first-child { border-right: none; border-bottom: 1px solid rgba(204,0,0,0.2); }
+    }
+    @media (max-width: 400px) {
+      .brand-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-logo">
+      <img src="image/FF VT Logo (1) (1).jpg" alt="Fleet Feet Vermont" />
+    </div>
+    <div class="header-logo">
+      <div ><img src="image/Saucony-Logo.png" /></div>
+    </div>
+    <div class="header-logo">
+      <div ><img src="image/racevt.png" /></div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-eyebrow">Saucony <span>Days</span></div>
+    <h1>Find Your Perfect Saucony</h1>
+  </section>
+
+  <!-- Race Vermont Section Label -->
+  <div class="section-label">
+    <div class="eyebrow">Race Vermont</div>
+    <h2>The Automaster Shelburne Half Marathon &amp; 5k/10k</h2>
+  </div>
+
+  <!-- Race Vermont -->
+  <section class="race-section">
+    <div class="race-feature">
+      <div class="race-feature-img-placeholder">Race Vermont — Half Marathon Banner</div>
+      <div class="race-feature-body">
+        <div class="race-feature-eyebrow">Featured Race</div>
+        <div class="race-feature-title">Automaster Shelburne Half Marathon &amp; 5k/10k</div>
+        <div class="race-meta">
+          <div class="race-meta-item">
+            <div class="race-meta-label">Date</div>
+            <div class="race-meta-value">Sunday, May 3rd</div>
+          </div>
+          <div class="race-meta-item">
+            <div class="race-meta-label">Location</div>
+            <div class="race-meta-value">Shelburne, VT 05482</div>
+          </div>
+        </div>
+        <div class="race-desc">Beginning and ending at Shelburne Field House, the half marathon is a loop course in picturesque Shelburne, Vermont. You'll run on a combination of dirt and back roads including a portion on the Meach Cove property, past Shelburne Farms, and along Harbor Road with beautiful views of Lake Champlain and the Adirondacks. The 5K and 10K are both out-and-back courses along Harbor Road — the 5K is relatively flat, while the 10K has a couple of hills.</div>
+        <a href="https://runsignup.com/Race/VT/Shelburne/SACHalfMarathon5K10K" target="_blank" class="race-cta">Register Now</a>
+      </div>
+    </div>
+
+    <!-- Upcoming Races -->
+    <div class="section-label" style="text-align:left; padding: 0 0 18px;">
+      <div class="eyebrow">Upcoming Events</div>
+      <h2 style="font-size: clamp(18px,3vw,26px);">Race Calendar</h2>
+    </div>
+
+    <div class="race-list">
+      <div class="race-item">
+        <div>
+          <div class="race-item-date">Sat September 12, 2026</div>
+          <div class="race-item-name">Saucony Charlotte Covered Bridge Half Marathon &amp; 5k/10k</div>
+          <div class="race-item-location">Shelburne, VT</div>
+        </div>
+        <a href="https://runsignup.com/Race/VT/Shelburne/CharlotteCoveredBridge5K10KHalfMarathon" target="_blank" class="race-item-link">Info ›</a>
+      </div>
+      <div class="race-item">
+        <div>
+          <div class="race-item-date">Sun September 27, 2026</div>
+          <div class="race-item-name">Shelburne Farms 5K</div>
+          <div class="race-item-location">Shelburne, VT</div>
+        </div>
+        <a href="https://runsignup.com/Race/VT/Shelburne/ShelburneFarms5K" target="_blank" class="race-item-link">Info ›</a>
+      </div>
+      <div class="race-item">
+        <div>
+          <div class="race-item-date">Sat October 24, 2026</div>
+          <div class="race-item-name">Union Bank Field House Fall Half Marathon &amp; 5k/10k</div>
+          <div class="race-item-location">Shelburne, VT</div>
+        </div>
+        <a href="https://runsignup.com/Race/VT/Shelburne/Fall5K10KHalfMarathon" target="_blank" class="race-item-link">Info ›</a>
+      </div>
+    </div>
+
+  <!-- Divider -->
+  <hr class="divider" />
+
+  <!-- Shoes Section Label -->
+  <div class="section-label">
+    <div class="eyebrow">In Stock Now</div>
+    <h2>The Full Saucony Lineup</h2>
+  </div>
+
+  <!-- Category Grid -->
+  <section class="grid-section">
+    <div class="brand-grid" id="brandGrid"></div>
+  </section>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+      <div class="modal-header">
+        <div class="modal-brand-label" id="modalLabel">Saucony</div>
+        <div class="modal-brand-title" id="modalTitle"></div>
+        <div class="modal-brand-desc" id="modalDesc"></div>
+      </div>
+      <div class="styles-grid" id="stylesGrid"></div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2026 Fleet Feet Vermont
+  </footer>
+
+<script>
+  const categories = [
+    {
+      brand: "Neutral",
+      imgSrc: "image/shoes/ride19.webp",
+      tagline: "",
+      desc: "",
+      styles: [
+        { name: "Ride 19",      price: "$145", drop: "8mm",  cushion: "Medium",  imgSrc: "image/shoes/ride19.webp",    url: "#" },
+        { name: "Triumph 23",   price: "$170", drop: "10mm", cushion: "Maximum", imgSrc: "image/shoes/truimph23.webp", url: "#" },
+      ]
+    },
+    {
+      brand: "Stability",
+      imgSrc: "image/shoes/guide.webp",
+      tagline: "",
+      desc: "",
+      styles: [
+        { name: "Guide 19",     price: "$150", drop: "8mm",  cushion: "Medium",  imgSrc: "image/shoes/guide.webp",    url: "#" },
+        { name: "Omni 23 ST", price: "$170", drop: "8mm",  cushion: "Maximum", imgSrc: "image/shoes/omni.webp", url: "#" },
+      ]
+    },
+    {
+      brand: "Trail",
+      imgSrc: "image/shoes/peregrin.webp",
+      tagline: "",
+      desc: "",
+      styles: [
+        { name: "Peregrine 16", price: "$170", drop: "4mm",  cushion: "Medium",  imgSrc: "image/shoes/peregrin.webp", url: "#" },
+      ]
+    },
+    {
+      brand: "Performance",
+      imgSrc: "image/shoes/endorphin.webp",
+      tagline: "",
+      desc: "",
+      styles: [
+        { name: "Endorphin Speed 5", price: "$230", drop: "8mm", cushion: "Light", imgSrc: "image/shoes/endorphin.webp", url: "#" },
+        { name: "Endorphin Erusa",   price: "$325", drop: "8mm", cushion: "Light", imgSrc: "image/shoes/ezura.webp",   url: "#" },
+      ]
+    }
+  ];
+
+  const brandGrid = document.getElementById('brandGrid');
+
+  categories.forEach((cat, i) => {
+    const div = document.createElement('div');
+    div.className = 'brand-card';
+    div.dataset.index = i;
+    div.tabIndex = 0;
+    div.role = 'button';
+    div.setAttribute('aria-label', `Browse Saucony ${cat.brand} shoes`);
+    div.innerHTML = `
+      <div class="brand-img">
+        <img src="${cat.imgSrc}" alt="${cat.brand}" onerror="this.parentElement.innerHTML='<div style=\\'display:flex;align-items:center;justify-content:center;height:100%;font-family:Barlow Condensed,sans-serif;font-size:48px;font-weight:900;color:#0D1B3E;letter-spacing:2px;text-transform:uppercase;\\'>${cat.brand}</div>'" />
+      </div>
+      <div class="brand-info">
+        <div>
+          <div class="brand-name-small">${cat.brand}</div>
+          <div class="brand-tagline">${cat.tagline}</div>
+        </div>
+        <div class="brand-arrow">›</div>
+      </div>`;
+    brandGrid.appendChild(div);
+  });
+
+  const overlay  = document.getElementById('modalOverlay');
+  const closeBtn = document.getElementById('modalClose');
+
+  function openModal(idx) {
+    const cat = categories[idx];
+    document.getElementById('modalLabel').textContent = 'Saucony';
+    document.getElementById('modalTitle').textContent = cat.brand;
+    document.getElementById('modalDesc').textContent  = '';
+
+    const stylesGrid = document.getElementById('stylesGrid');
+    stylesGrid.innerHTML = '';
+
+    cat.styles.forEach(s => {
+      const a = document.createElement('a');
+      a.href = '#';
+      a.className = 'style-card';
+      a.innerHTML = `
+        <div class="flip-inner">
+          <div class="flip-front">
+            <img src="${s.imgSrc}" alt="${s.name}" onerror="this.parentElement.innerHTML='<div style=\\'display:flex;align-items:center;justify-content:center;height:100%;font-family:Barlow Condensed,sans-serif;font-size:13px;font-weight:700;color:#0D1B3E;text-align:center;padding:12px;\\'>${s.name}</div>'" />
+            <div class="flip-front-hint">↺</div>
+          </div>
+          <div class="flip-back">
+            <div class="style-card-name">${s.name}</div>
+            <div class="style-stats">
+              <div class="stat-row"><span class="stat-label">Price</span><span class="stat-value">${s.price}</span></div>
+              <div class="stat-row"><span class="stat-label">Drop</span><span class="stat-value">${s.drop}</span></div>
+            </div>
+          </div>
+        </div>`;
+      stylesGrid.appendChild(a);
+    });
+
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  brandGrid.addEventListener('click', e => {
+    const card = e.target.closest('.brand-card');
+    if (card) openModal(parseInt(card.dataset.index));
+  });
+  brandGrid.addEventListener('keydown', e => {
+    const card = e.target.closest('.brand-card');
+    if (card && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); openModal(parseInt(card.dataset.index)); }
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
